@@ -48,6 +48,38 @@ def Grey_Paddle(gw):
     rect.set_color("Grey")
     rect.set_filled(True)
     gw.add(rect)
+    populateBricks(gw)
+    # You fill in the rest of this function along with any additional
+    # helper and callback functions you need
+
+
+def populateBricks(gw):
+    i=0
+    totalBlocks=0
+    color=['red','orange','green','#1F85DE','blue']
+    colorRowCount=0
+    colorIndex=0
+    brickXLoc=20
+    brickYLoc=20
+    while(totalBlocks<N_ROWS*N_COLS):
+        if(i==N_COLS-1):
+            i=0
+            colorRowCount+=1
+            brickYLoc+=35
+            brickXLoc=20
+        if(colorRowCount==2):
+            colorIndex+=1
+            colorRowCount=0
+        rect=GRect(brickXLoc,brickYLoc,BRICK_WIDTH-5,BRICK_HEIGHT)
+        brickColor=color[colorIndex]
+        rect.set_color(brickColor)
+        rect.set_filled(True)
+        brickXLoc+=35
+        totalBlocks+=1
+        i+=1
+        gw.add(rect)
+
+
 
 
 # Startup code
