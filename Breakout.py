@@ -40,15 +40,10 @@ def breakout():
 
     gw = GWindow(GWINDOW_WIDTH, GWINDOW_HEIGHT)
     gs = GState()
-<<<<<<< HEAD
     Grey_Paddle(gw,160)
     gw.add_event_listener("mousemove", mousemove_event)
-    
-=======
-    Grey_Paddle(gw)
     populateBricks(gw)
     setBallLocation(gw,.1,.1,80,PADDLE_Y-50)
->>>>>>> 281d2577f62f54885a59936afb050c51260ea624
     # You fill in the rest of this function along with any additional
     # helper and callback functions you need
 
