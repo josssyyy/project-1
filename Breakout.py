@@ -44,6 +44,37 @@ def breakout():
     # helper and callback functions you need
 
 
+def populateBricks(gw):
+    i=0
+    totalBlocks=0
+    color=['red','orange','green','#1F85DE','blue']
+    colorCount=0
+    colorIndex=0
+    brickXLoc=20
+    brickYLoc=20
+    while(totalBlocks<N_ROWS*N_COLS):
+        print('hey')
+        if(i==N_COLS-1):
+            i=0
+            colorCount+=1
+            brickYLoc+=35
+            brickXLoc=20
+        if(colorCount==2):
+            colorIndex+=1
+            colorCount=0
+        rect=GRect(brickXLoc,brickYLoc,BRICK_WIDTH-5,BRICK_HEIGHT)
+        brickColor=color[colorIndex]
+        rect.set_color(brickColor)
+        rect.set_filled(True)
+        brickXLoc+=35
+        totalBlocks+=1
+        i+=1
+        gw.add(rect)
+    
+
+
+
+    print("hi")
 
 
 
