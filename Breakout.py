@@ -40,9 +40,27 @@ def breakout():
     gw = GWindow(GWINDOW_WIDTH, GWINDOW_HEIGHT)
     gs = GState()
     populateBricks(gw)
+    setBallLocation(gw,.2,.3,80,PADDLE_Y-50)
     # You fill in the rest of this function along with any additional
     # helper and callback functions you need
 
+def setBallLocation(gw,vx,vy,initialX,initialY):
+    boundLeft=0
+    boundTop=0
+    boundRight=GWINDOW_WIDTH
+    boundBottom=GWINDOW_HEIGHT
+    
+    vx=vx
+    vy=vy
+
+    oval=GOval(initialX,initialY,BALL_SIZE,BALL_SIZE)
+    oval.set_color('black')
+    oval.set_filled(True)
+    gw.add(oval)
+    if(initialX<boundLeft or initialX>boundRight or initialY<boundTop or initialY>boundBottom):
+        print("out of bounds")
+    else:
+        setBallLocation(gw,vx,vy,initialX+vx,initialY+vy)
 
 def populateBricks(gw):
     i=0
@@ -50,19 +68,21 @@ def populateBricks(gw):
     color=['red','orange','green','#1F85DE','blue']
     colorRowCount=0
     colorIndex=0
-    brickXLoc=20
+    brickXLoc=5
     brickYLoc=20
+    brickColor=color[0]
     while(totalBlocks<N_ROWS*N_COLS):
-        if(i==N_COLS-1):
+        if(i==N_COLS):
             i=0
             colorRowCount+=1
             brickYLoc+=35
-            brickXLoc=20
+            brickXLoc=5
         if(colorRowCount==2):
-            colorIndex+=1
             colorRowCount=0
+            colorIndex+=1
+            if(len(color)>colorIndex):
+                brickColor=color[colorIndex]
         rect=GRect(brickXLoc,brickYLoc,BRICK_WIDTH-5,BRICK_HEIGHT)
-        brickColor=color[colorIndex]
         rect.set_color(brickColor)
         rect.set_filled(True)
         brickXLoc+=35
