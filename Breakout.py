@@ -39,13 +39,15 @@ def breakout():
 
     gw = GWindow(GWINDOW_WIDTH, GWINDOW_HEIGHT)
     gs = GState()
-
+    Grey_Paddle(gw)
     # You fill in the rest of this function along with any additional
     # helper and callback functions you need
 
-
-
-
+def Grey_Paddle(gw):
+    rect = GRect(160,PADDLE_Y,PADDLE_WIDTH,PADDLE_HEIGHT)
+    rect.set_color("Grey")
+    rect.set_filled(True)
+    gw.add(rect)
 
 
 # Startup code
