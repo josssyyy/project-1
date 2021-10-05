@@ -39,12 +39,14 @@ def breakout():
 
     gw = GWindow(GWINDOW_WIDTH, GWINDOW_HEIGHT)
     gs = GState()
-    Grey_Paddle(gw)
+    Grey_Paddle(gw,160)
+    gw.add_event_listener("mousemove", mousemove_event)
+    
     # You fill in the rest of this function along with any additional
     # helper and callback functions you need
 
-def Grey_Paddle(gw):
-    rect = GRect(160,PADDLE_Y,PADDLE_WIDTH,PADDLE_HEIGHT)
+def Grey_Paddle(gw,xpos):
+    rect = GRect(xpos,PADDLE_Y,PADDLE_WIDTH,PADDLE_HEIGHT)
     rect.set_color("Grey")
     rect.set_filled(True)
     gw.add(rect)
@@ -53,6 +55,20 @@ def Grey_Paddle(gw):
     # You fill in the rest of this function along with any additional
     # helper and callback functions you need
 
+def mousemove_event(e):
+        x = e.get_x()
+        y = e.get_y()
+        #Grey_Paddle(gw,x)
+        print(x)
+def drag_action(e):
+        gs.line.set_end_point(e.get_x(), e.get_y())
+
+gw = GWindow(360, 600)
+gs = GState()
+gs.line = None
+gw.add_event_listener("mousemove", mousemove_event)
+    
+    
 def setBallLocation(gw,vx,vy,initialX,initialY):
     boundLeft=0
     boundTop=0
